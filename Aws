@@ -1,0 +1,25 @@
+from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.pagesizes import letter
+
+path = "/mnt/data/need_style_selection.pdf"
+styles = getSampleStyleSheet()
+
+doc = SimpleDocTemplate(path, pagesize=letter)
+story = []
+
+text = """
+Unable to generate full Unit 1–4 Answer PDFs because the answer-style preference is missing.
+
+Please tell me:
+A) Long detailed answers
+B) Short point-wise answers
+C) Mixed style (6m long, 5m medium, 4m short)
+
+After selecting A/B/C, your full PDFs will be generated immediately.
+"""
+
+story.append(Paragraph(text.replace("\n","<br/>"), styles["Normal"]))
+doc.build(story)
+
+path
